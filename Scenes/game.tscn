@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://cyxy4y7xvtg0q"]
+
+[ext_resource type="Script" uid="uid://xqp8horol5vd" path="res://game.gd" id="1_qxrlw"]
+[ext_resource type="FontFile" uid="uid://j5qscuoqcgge" path="res://Fonts/SpecialElite-Regular.ttf" id="2_wrm1d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dryh"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="Game" type="Control" unique_id=317642142]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qxrlw")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1303725653]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+
+[node name="TopHUD" type="HBoxContainer" parent="." unique_id=993560999]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/separation = 9
+
+[node name="ScoreLabel" type="Label" parent="TopHUD" unique_id=1999010071]
+layout_mode = 2
+
+[node name="TimerLabel" type="Label" parent="TopHUD" unique_id=1957209625]
+layout_mode = 2
+
+[node name="CenterText" type="VBoxContainer" parent="." unique_id=959282256]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameLabel" type="Label" parent="CenterText" unique_id=895349104]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wrm1d")
+
+[node name="InfoLabel" type="Label" parent="CenterText" unique_id=1565815885]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wrm1d")
+
+[node name="InputField" type="LineEdit" parent="." unique_id=915403903]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -102.0
+offset_right = -35.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.03839705, 0.038397226, 0.038397092, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3dryh")
+
+[node name="GameTimer" type="Timer" parent="." unique_id=397003946]
+wait_time = 60.0
+one_shot = true
+
+[node name="PauseTimer" type="Timer" parent="." unique_id=846226513]
+wait_time = 2.0
+one_shot = true
