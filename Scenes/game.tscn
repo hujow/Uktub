@@ -32,13 +32,14 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
-theme_override_constants/separation = 9
+theme_override_constants/separation = 30
 
 [node name="ScoreLabel" type="Label" parent="TopHUD" unique_id=1999010071]
 layout_mode = 2
 
 [node name="TimerLabel" type="Label" parent="TopHUD" unique_id=1957209625]
 layout_mode = 2
+size_flags_horizontal = 8
 
 [node name="CenterText" type="VBoxContainer" parent="." unique_id=959282256]
 layout_mode = 1
