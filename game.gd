@@ -77,6 +77,12 @@ func classify(age_str: String, sex_str: String) -> String:
 		return "woman"
 	else:
 		return "unknown"
+		
+func get_random_color() -> Color:
+	var r = randf_range(0.2, 0.8)
+	var g = randf_range(0.2, 0.8)
+	var b = randf_range(0.2, 0.8)
+	return Color(r, g, b)
 
 func pick_next_name():
 	if names_list.size() == 0:
@@ -92,6 +98,8 @@ func pick_next_name():
 	input_field.text = ""
 	input_field.editable = true
 	input_field.grab_focus()
+	RenderingServer.set_default_clear_color(get_random_color())
+	
 
 func _on_input_field_text_submitted(submitted_text: String):
 	var typed = submitted_text.strip_edges().to_lower()
@@ -101,6 +109,7 @@ func _on_input_field_text_submitted(submitted_text: String):
 		success()
 	else:
 		input_field.text = ""
+		input_field.grab_focus()
 
 func success():
 	score += 1
