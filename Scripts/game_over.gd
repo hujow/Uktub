@@ -40,9 +40,7 @@ func format_duration(seconds_float: float) -> String:
 	
 	return str(days) + " days " + str(hours) + " hours " + str(mins) + " minutes " + str(sec) + " seconds"
 
-
-func _on_button_pressed() -> void:
-	pass # Replace with function body.
 	
 func _on_learn_more_button_pressed():
+	print("Le bouton a bien été cliqué !")
 	OS.shell_open("https://en.wikipedia.org/wiki/Casualties_of_the_Gaza_war")	
