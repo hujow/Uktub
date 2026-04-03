@@ -3,7 +3,7 @@ extends Control
 @onready var name_label = $CenterText/NameLabel
 @onready var info_label = $CenterText/InfoLabel
 @onready var score_label = $TopHUD/ScoreLabel
-@onready var timer_label = $TopHUD/TimerLabel
+@onready var timer_bar = $TimerBar
 @onready var input_field = $InputField
 @onready var game_timer = $GameTimer
 @onready var pause_timer = $PauseTimer
@@ -11,6 +11,7 @@ extends Control
 var names_list = []
 var current_data = {}
 var score = 0
+var game_over = false
 
 func _ready():
 	load_names_from_csv("res://Data/names.csv")
@@ -21,12 +22,15 @@ func _ready():
 	game_timer.timeout.connect(_on_game_timer_timeout)
 	pause_timer.timeout.connect(_on_pause_timer_timeout)
 	
+	timer_bar.max_value = game_timer.wait_time
+	timer_bar.value = game_timer.wait_time
+	
 	pick_next_name()
 	game_timer.start()
 	input_field.grab_focus()
 
-func _process(_delta):
-	timer_label.text = "Time: " + str(int(game_timer.time_left))
+func _process(_delta):	
+	timer_bar.value = game_timer.time_left
 
 func load_names_from_csv(path: String):
 	if not FileAccess.file_exists(path):
@@ -130,6 +134,62 @@ func _on_pause_timer_timeout():
 	pick_next_name()
 
 func _on_game_timer_timeout():
+	game_over = true
 	input_field.editable = false
-	name_label.text = "TIME'S UP!"
-	info_label.text = ""
+	input_field.hide() # On cache le champ de texte pour faire de la place
+	
+	name_label.text = "OUT OF TIME"
+	
+	var game_over_message = ""
+	
+	if score == 0:
+		game_over_message = "You didn't type any names!"
+	else:
+		# Calcul du temps estimé : (Total des noms * Durée du timer) / Score
+		var total_names = names_list.size()
+		var estimate_sec = (float(total_names) * game_timer.wait_time) / float(score)
+		
+		game_over_message = "At this speed, it would take you\n"
+		game_over_message += format_duration(estimate_sec)
+		game_over_message += "\nto type all the names of the victims."
+	
+	# Ajout de l'instruction pour recommencer
+	game_over_message += "\n\nPress 'R' to restart"
+	info_label.text = game_over_message
+
+func format_duration(seconds_float: float) -> String:
+	var sec = int(round(seconds_float))
+	
+	var days = sec / 86400
+	sec = sec % 86400
+	
+	var hours = sec / 3600
+	sec = sec % 3600
+	
+	var mins = sec / 60
+	sec = sec % 60
+	
+	return str(days) + " days " + str(hours) + " hours " + str(mins) + " minutes " + str(sec) + " seconds"
+	
+func _input(event):
+	# Si le jeu est terminé et qu'on appuie sur la touche R
+	if game_over and event is InputEventKey and event.pressed:
+		if event.keycode == KEY_R:
+			restart_game()
+
+func restart_game():
+	game_over = false
+	score = 0
+	score_label.text = "Score: 0"
+	
+	# On réaffiche et on vide le champ de texte
+	input_field.show()
+	input_field.editable = true
+	input_field.text = ""
+	
+	# On relance le chronomètre (et la jauge si vous l'avez ajoutée précédemment)
+	game_timer.start()
+	if "timer_bar" in self:
+		timer_bar.value = game_timer.wait_time
+		
+	pick_next_name()

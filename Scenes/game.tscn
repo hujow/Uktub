@@ -2,12 +2,22 @@
 
 [ext_resource type="Script" uid="uid://xqp8horol5vd" path="res://game.gd" id="1_qxrlw"]
 [ext_resource type="FontFile" uid="uid://j5qscuoqcgge" path="res://Fonts/SpecialElite-Regular.ttf" id="2_wrm1d"]
-[ext_resource type="AudioStream" uid="uid://bhwu5f3ssslsq" path="res://Track O01.wav" id="3_wrm1d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dryh"]
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 2
 border_width_top = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxrlw"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrm1d"]
+bg_color = Color(0, 0.6106458, 0.6120141, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Control" unique_id=317642142]
@@ -31,17 +41,19 @@ color = Color(0.14901961, 0.14901961, 0.14901961, 1)
 
 [node name="TopHUD" type="HBoxContainer" parent="." unique_id=993560999]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.019000001
+offset_left = -0.5
+offset_top = 7.0
+offset_right = 0.5
+offset_bottom = 21.599998
 grow_horizontal = 2
 theme_override_constants/separation = 30
 
 [node name="ScoreLabel" type="Label" parent="TopHUD" unique_id=1999010071]
 layout_mode = 2
-
-[node name="TimerLabel" type="Label" parent="TopHUD" unique_id=1957209625]
-layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="CenterText" type="VBoxContainer" parent="." unique_id=959282256]
 layout_mode = 1
@@ -66,7 +78,7 @@ theme_override_font_sizes/font_size = 48
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_wrm1d")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 36
 
 [node name="InputField" type="LineEdit" parent="." unique_id=915403903]
 layout_mode = 1
@@ -92,7 +104,17 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=825712158]
-stream = ExtResource("3_wrm1d")
-pitch_scale = 1.3
-autoplay = true
+[node name="TimerBar" type="ProgressBar" parent="." unique_id=119894124]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -380.0
+offset_top = 7.0
+offset_right = 380.0
+offset_bottom = 34.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_qxrlw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wrm1d")
+show_percentage = false
