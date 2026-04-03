@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xqp8horol5vd" path="res://game.gd" id="1_qxrlw"]
 [ext_resource type="FontFile" uid="uid://j5qscuoqcgge" path="res://Fonts/SpecialElite-Regular.ttf" id="2_wrm1d"]
+[ext_resource type="AudioStream" uid="uid://bhwu5f3ssslsq" path="res://Track O01.wav" id="3_wrm1d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dryh"]
 bg_color = Color(1, 1, 1, 1)
@@ -19,6 +20,7 @@ grow_vertical = 2
 script = ExtResource("1_qxrlw")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1303725653]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,10 +60,13 @@ grow_vertical = 2
 [node name="NameLabel" type="Label" parent="CenterText" unique_id=895349104]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wrm1d")
+theme_override_font_sizes/font_size = 48
 
 [node name="InfoLabel" type="Label" parent="CenterText" unique_id=1565815885]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_wrm1d")
+theme_override_font_sizes/font_size = 48
 
 [node name="InputField" type="LineEdit" parent="." unique_id=915403903]
 layout_mode = 1
@@ -85,3 +90,8 @@ one_shot = true
 [node name="PauseTimer" type="Timer" parent="." unique_id=846226513]
 wait_time = 2.0
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=825712158]
+stream = ExtResource("3_wrm1d")
+pitch_scale = 1.3
+autoplay = true

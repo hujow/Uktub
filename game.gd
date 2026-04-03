@@ -97,7 +97,7 @@ func pick_next_name():
 	
 	input_field.text = ""
 	input_field.editable = true
-	input_field.grab_focus()
+	input_field.call_deferred("grab_focus")
 	RenderingServer.set_default_clear_color(get_random_color())
 	
 
@@ -109,7 +109,7 @@ func _on_input_field_text_submitted(submitted_text: String):
 		success()
 	else:
 		input_field.text = ""
-		input_field.grab_focus()
+		input_field.call_deferred("grab_focus")
 
 func success():
 	score += 1
