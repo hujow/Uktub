@@ -1,5 +1,7 @@
 extends Control
 
+const GAME_OVER_SCENE = preload("res://Scenes/game_over.tscn")
+
 @onready var name_label = $CenterText/NameLabel
 @onready var info_label = $CenterText/InfoLabel
 @onready var score_label = $TopHUD/ScoreLabel
@@ -7,6 +9,8 @@ extends Control
 @onready var input_field = $InputField
 @onready var game_timer = $GameTimer
 @onready var pause_timer = $PauseTimer
+
+
 
 var names_list = []
 var current_data = {}
@@ -134,28 +138,25 @@ func _on_pause_timer_timeout():
 	pick_next_name()
 
 func _on_game_timer_timeout():
-	game_over = true
+	# 1. Masquer les éléments de l'UI du jeu en cours
 	input_field.editable = false
-	input_field.hide() # On cache le champ de texte pour faire de la place
+	input_field.hide()
+	$TopHUD.hide()
+	$CenterText.hide()
+	if "timer_bar" in self:
+		$TimerBar.hide()
 	
-	name_label.text = "OUT OF TIME"
+	# 2. Instancier la scène GameOver
+	var game_over_instance = GAME_OVER_SCENE.instantiate()
 	
-	var game_over_message = ""
+	# 3. Transmettre les valeurs de la partie
+	game_over_instance.final_score = score
+	game_over_instance.total_names = names_list.size()
+	game_over_instance.timer_duration = game_timer.wait_time
 	
-	if score == 0:
-		game_over_message = "You didn't type any names!"
-	else:
-		# Calcul du temps estimé : (Total des noms * Durée du timer) / Score
-		var total_names = names_list.size()
-		var estimate_sec = (float(total_names) * game_timer.wait_time) / float(score)
-		
-		game_over_message = "At this speed, it would take you\n"
-		game_over_message += format_duration(estimate_sec)
-		game_over_message += "\nto type all the names of the victims."
-	
-	# Ajout de l'instruction pour recommencer
-	game_over_message += "\n\nPress 'R' to restart"
-	info_label.text = game_over_message
+	# 4. Ajouter la scène GameOver à l'écran
+	# Le _ready() de game_over_instance sera appelé à ce moment précis
+	add_child(game_over_instance)
 
 func format_duration(seconds_float: float) -> String:
 	var sec = int(round(seconds_float))

@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://kvn6125rg4q6"]
+
+[ext_resource type="Script" uid="uid://g2ful3jdc5n1" path="res://Scripts/game_over.gd" id="1_8fo1c"]
+[ext_resource type="FontFile" uid="uid://j5qscuoqcgge" path="res://Fonts/SpecialElite-Regular.ttf" id="1_ojehl"]
+
+[node name="GameOver" type="Control" unique_id=904842085]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8fo1c")
+
+[node name="StatsLabel" type="Label" parent="." unique_id=538354505]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartLabel" type="Label" parent="." unique_id=45170311]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 166.5
+offset_right = 20.0
+offset_bottom = 189.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "Press 'R' to restart"
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1148455228]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.5
+offset_top = -122.0
+offset_right = 104.5
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_ojehl")
+theme_override_font_sizes/font_size = 35
+text = "Out of time!"

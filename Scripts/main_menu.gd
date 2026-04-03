@@ -6,7 +6,7 @@ var game_scene_path = "res://Scenes/Game.tscn"
 @onready var prompt_label = $VBoxContainer/PromptLabel
 
 func _ready():
-	DisplayServer.window_set_title("Type the dead - press any key to begin")
+	DisplayServer.window_set_title("Tadhakkar!")
 
 func _input(event):
 	if event is InputEventKey and event.pressed:

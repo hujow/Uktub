@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cyxy4y7xvtg0q"]
 
-[ext_resource type="Script" uid="uid://xqp8horol5vd" path="res://game.gd" id="1_qxrlw"]
+[ext_resource type="Script" uid="uid://xqp8horol5vd" path="res://Scripts/game.gd" id="1_qxrlw"]
 [ext_resource type="FontFile" uid="uid://j5qscuoqcgge" path="res://Fonts/SpecialElite-Regular.ttf" id="2_wrm1d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dryh"]
@@ -13,7 +13,7 @@ border_color = Color(0, 0, 0, 1)
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrm1d"]
-bg_color = Color(0, 0.6106458, 0.6120141, 1)
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
