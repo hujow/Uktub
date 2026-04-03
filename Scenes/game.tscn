@@ -82,6 +82,8 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.03839705, 0.038397226, 0.038397092, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_3dryh")
+caret_blink = true
+caret_force_displayed = true
 
 [node name="GameTimer" type="Timer" parent="." unique_id=397003946]
 wait_time = 60.0

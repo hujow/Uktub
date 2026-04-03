@@ -109,7 +109,10 @@ func _on_input_field_text_submitted(submitted_text: String):
 		success()
 	else:
 		input_field.text = ""
-		input_field.call_deferred("grab_focus")
+		# On attend la toute fin de la boucle de traitement de Godot
+		await get_tree().process_frame
+		# On force le focus
+		input_field.grab_focus()
 
 func success():
 	score += 1
